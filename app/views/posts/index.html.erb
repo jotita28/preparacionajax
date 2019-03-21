@@ -1,0 +1,60 @@
+<h1>Ingresa un Post!</h1>
+<%= render 'form', post: @post %>
+<br>
+
+<% if user_signed_in? %>
+<h3>Posts de <%= current_user.email %></h3>
+<% end %>
+
+<input type="text" name="" id="buscador" placeholder="Ingresa busqueda">
+<table class="table table-hover">
+<thead class="thead thead-dark">
+  <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+</thead>
+<tbody>
+    <%= render @posts%>
+</tbody>
+</table>
+
+<script>
+$('#buscador').keyup(function() { 
+    var search = $('#buscador').val();
+
+    if(search.length < 3) {
+        search = ''
+    }
+    $.ajax({
+    type: "GET",
+    url: "<%=posts_path%>",
+    data: {buscador: search},
+    success: function (response) {
+        
+    }
+    }); 
+});
+</script>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      
+    </div>
+  </div>
+</div>

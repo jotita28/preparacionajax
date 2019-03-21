@@ -1,0 +1,9 @@
+            <% @comments.each do |comment|%>
+            <tr id="<%= comment.id%>"> 
+            <td><%= comment.user.email %></td>
+            <td><%= comment.content %></td>
+            <td><%=link_to 'Edit', edit_post_comment_path(@post, comment), class: 'btn btn-info', data: {remote: true}%></td>
+            <td><%=link_to 'Borrar', post_comment_path(@post,comment), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?', remote: true}%></td>
+            </tr>
+            <%end%>
+ 
